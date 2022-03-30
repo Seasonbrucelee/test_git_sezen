@@ -7,7 +7,19 @@ class User {
     private $signature;
     private $actif;
 
-    //methodes
+    //Methodes
+    public function __construct($pseudo,$email, $signature)
+    {
+        //echo "Construct!";
+        $this->pseudo = $pseudo;
+        $this->email = $email;
+        $this->signature = $signature;
+        $this->actif = true;
+    }
+    public function __destruct()
+    {
+        echo "Destruct de" . $this->pseudo . "!";
+    }
     public function getPseudo()
     {
         return $this->pseudo;
@@ -17,21 +29,28 @@ class User {
             $this->pseudo = $newPseudo;
         }
         else{
-            echo"<p>pseudo vide ou trop long</p>";
+            echo"<p>pseudo vide ou trop long!</p>";
         }
     }
 
     public function setEmail($newEmail)
     {
         if(!empty($newEmail) and strlen($newEmail) < 100) {
-            $this->pseudo = $newEmail;
+            $this->email = $newEmail;
         } else{
             echo '<p>Email vide ou trop long!</p>';
         }  
     }
 
-    public function envoyerEmail($titre,$message){
-        mail($this->email,$titre,$message);
+    public function envoyerEmail($titre,$message="Texte par défaut"){
+        $retour = mail($this->email,$titre,$message);
+        //if (!$retour and DEBUG) my_log("Pb mail!");
+        return $retour;
+        //return mail($this->email,$titre,$message);
+    }
+    public function bloquer(){
+        $this->actif = false;
+        $this->envoyerEmail("Alerte user!", "Vous êtes bloqué!");
     }
 }
 

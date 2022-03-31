@@ -64,8 +64,9 @@
     <h2>Héritage</h2>
         <?php
         include_once("admin.class.php");
-        $admin1= new Admin("Admin1", "admin1@mail.com", "ADM");
-        my_var_dump($admin1);
+        $admin= new Admin("Admin1", "admin1@mail.com", "ADM");
+        my_var_dump($admin);
+        $admin->supprimerUser($user2);
         ?>
 
 </body>

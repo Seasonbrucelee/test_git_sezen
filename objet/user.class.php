@@ -2,7 +2,7 @@
 
 class User {
     //propriétés
-    private $pseudo;
+    protected $pseudo; //on le met en "protected" pour que l'administrateur puisse y accéder
     private $email;
     private $signature;
     private $actif;

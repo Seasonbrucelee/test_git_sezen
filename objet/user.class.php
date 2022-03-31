@@ -18,7 +18,7 @@ class User {
     }
     public function __destruct()
     {
-        echo "Destruct de" . $this->pseudo . "!";
+        echo "Destruct de " . $this->pseudo . "!";
     }
     public function getPseudo()
     {
